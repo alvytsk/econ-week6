@@ -1,0 +1,322 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Analyst Desk · Week 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+
+/* Layout: a statistical-release sheet — slim masthead, tab strip of three desks, one task column (~44rem) of numbered items */
+:root{
+  --paper:#f6f7f4; --sheet:#ffffff; --ink:#1d2421; --muted:#5d6762; --rule:#d9ddd6;
+  --accent:#0f6b5c; --accent-soft:#e1efe9; --mark:#b4561c;
+  --ok:#1f7a3a; --ok-bg:#e5f3e8; --bad:#b3261e; --bad-bg:#fbe9e7;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-data:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121614; --sheet:#1a1f1c; --ink:#e6ebe7; --muted:#9aa49e; --rule:#2e3531;
+  --accent:#5cc2ab; --accent-soft:#1d2f2a; --mark:#e08a50;
+  --ok:#6fcf8a; --ok-bg:#183222; --bad:#f08a80; --bad-bg:#3a1d1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121614; --sheet:#1a1f1c; --ink:#e6ebe7; --muted:#9aa49e; --rule:#2e3531;
+  --accent:#5cc2ab; --accent-soft:#1d2f2a; --mark:#e08a50;
+  --ok:#6fcf8a; --ok-bg:#183222; --bad:#f08a80; --bad-bg:#3a1d1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--f-body);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:46rem;margin:0 auto}
+header.mast{padding-block:20px 12px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink)}
+.mast h1{font:700 1.9rem/1.05 var(--f-display);margin:0;letter-spacing:.01em;text-wrap:balance}
+.mast .kicker{font:600 .72rem/1 var(--f-data);text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:6px}
+.variant{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font:.8rem var(--f-data);color:var(--muted)}
+.variant b{color:var(--ink);font-size:.95rem}
+.variant input{width:5.5em;font:inherit;padding:4px 6px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:4px}
+button{font:600 .85rem var(--f-body);cursor:pointer;border-radius:5px;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);padding:7px 14px}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+button:disabled{opacity:.45;cursor:default}
+nav.tabs{display:flex;gap:4px;margin-top:14px;overflow-x:auto;border-bottom:1px solid var(--rule)}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font:600 .9rem var(--f-display);padding:8px 12px;border-bottom:3px solid transparent;letter-spacing:.02em}
+nav.tabs a[aria-current="true"]{color:var(--ink);border-color:var(--accent)}
+nav.tabs .sc{font:.75rem var(--f-data);color:var(--accent);margin-left:6px}
+.intro{color:var(--muted);font-size:.9rem;margin:14px 0 4px;max-width:65ch}
+section.desk h2{font:700 1.35rem/1.2 var(--f-display);margin:22px 0 4px}
+section.desk h3{font:600 .78rem/1 var(--f-data);text-transform:uppercase;letter-spacing:.1em;color:var(--mark);margin:28px 0 10px}
+.lede{max-width:65ch;margin:0 0 10px}
+.tablebox{overflow-x:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;margin:10px 0 6px}
+table{border-collapse:collapse;width:100%;font:.88rem var(--f-data);font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--rule);white-space:nowrap}
+th{font:600 .75rem var(--f-body);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+th:first-child,td:first-child{text-align:left}
+tr:last-child td{border-bottom:0}
+.task{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;margin:10px 0;display:grid;gap:8px}
+.task .q{display:flex;gap:10px}
+.task .n{font:600 .8rem var(--f-data);color:var(--accent);min-width:2.2em;padding-top:2px}
+.task .qt{min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-left:calc(2.2em + 10px)}
+.row input[type=text]{width:9.5em;font:1rem var(--f-data);padding:6px 8px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink)}
+.unit{font:.85rem var(--f-data);color:var(--muted)}
+.fb{padding-left:calc(2.2em + 10px);font-size:.88rem}
+.fb .ok{color:var(--ok);font-weight:600}
+.fb .bad{color:var(--bad);font-weight:600}
+.sol{background:var(--accent-soft);border-radius:4px;padding:8px 10px;margin-top:6px;font-size:.88rem}
+.sol code,.mono{font-family:var(--f-data);font-size:.85rem}
+.task.done-ok{border-color:var(--ok)}
+.task.done-bad{border-color:var(--bad)}
+.opts{display:grid;gap:6px;padding-left:calc(2.2em + 10px)}
+.opts label{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border:1px solid var(--rule);border-radius:4px;cursor:pointer;background:var(--paper)}
+.opts input{margin-top:4px}
+.cards{display:grid;gap:8px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:10px 12px;display:grid;gap:8px}
+.card p{margin:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{background:var(--paper);color:var(--ink);border-color:var(--rule);font-weight:500;padding:6px 10px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.card.ok{border-color:var(--ok);background:var(--ok-bg)}
+.card.bad{border-color:var(--bad);background:var(--bad-bg)}
+.card .why{font-size:.85rem;color:var(--ink)}
+.headline{font:600 1.02rem/1.35 var(--f-display);letter-spacing:.01em}
+.headline::before{content:"DATA · ";font:600 .7rem var(--f-data);color:var(--mark);letter-spacing:.1em}
+.selrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:8px}
+.selrow label{display:grid;gap:3px;font-size:.78rem;color:var(--muted)}
+select{font:.92rem var(--f-body);padding:6px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink);width:100%}
+.diagram{max-width:320px}
+.diagram svg{width:100%;height:auto;display:block}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.summary{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:16px;display:grid;gap:10px}
+.sumrow{display:flex;justify-content:space-between;gap:12px;font:1rem var(--f-data);border-bottom:1px dashed var(--rule);padding-bottom:6px}
+.code{font:600 1.4rem var(--f-data);letter-spacing:.06em;color:var(--accent)}
+.small{font-size:.82rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.task,.card{transition:border-color .2s,background-color .2s}}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div>
+    <div class="kicker">Economics for Investors · Week 6</div>
+    <h1>Analyst Desk</h1>
+  </div>
+  <div class="variant">
+    <span>Variant <b id="seedShow">—</b></span>
+    <label for="seedIn" class="small">Open variant</label>
+    <input id="seedIn" type="text" inputmode="numeric" maxlength="4" aria-label="Variant number">
+    <button class="ghost" id="seedGo" type="button">Open</button>
+    <button class="ghost" id="seedNew" type="button">New variant</button>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Desks">
+  <a href="#desk1" data-tab="desk1">1 · Growth and returns<span class="sc" id="tab1"></span></a>
+  <a href="#desk2" data-tab="desk2">2 · Deficits and debt<span class="sc" id="tab2"></span></a>
+  <a href="#desk3" data-tab="desk3">3 · Multipliers and stance<span class="sc" id="tab3"></span></a>
+  <a href="#summary" data-tab="summary">Summary</a>
+</nav>
+<p class="intro">Your numbers are generated for your variant, so your neighbour's answers will differ — compare reasoning, not results. Each question allows two attempts; after that, or when you ask for it, the solution opens. Enter decimals with a point or a comma. Round answers to two decimal places; enter percentages as 5.26, not 0.0526.</p>
+
+<section class="desk" id="desk1"></section>
+<section class="desk" id="desk2" hidden></section>
+<section class="desk" id="desk3" hidden></section>
+<section class="desk" id="summary" hidden></section>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- utilities ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+var R; function rnd(){return R();} function ri(a,b){return a+Math.floor(rnd()*(b-a+1));}
+function pick(arr){return arr[Math.floor(rnd()*arr.length)];}
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function fmt(x,d){d=d||0;var s=Number(x).toFixed(d);var p=s.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g," ");return p.join(".");}
+function parseNum(s){if(s==null)return NaN;s=String(s).trim().replace(/\s| /g,"").replace(",",".").replace("%","");if(s==="")return NaN;return Number(s);}
+function el(tag,attrs,html){var e=document.createElement(tag);if(attrs)for(var k in attrs){if(k==="class")e.className=attrs[k];else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* scoring: score[desk] = {id: 0|1} */
+var score={desk1:{},desk2:{},desk3:{}};
+var maxPts={desk1:0,desk2:0,desk3:0};
+function setScore(desk,id,v){score[desk][id]=v;updateTabs();}
+function deskPts(d){var s=0;for(var k in score[d])s+=score[d][k];return s;}
+function updateTabs(){["desk1","desk2","desk3"].forEach(function(d,i){var n=Object.keys(score[d]).length;document.getElementById("tab"+(i+1)).textContent=n?deskPts(d)+"/"+maxPts[d]:"";});if(!document.getElementById("summary").hidden)renderSummary();}
+
+/* numeric task: opts {desk,id,n,q,unit,answer,tol(abs),rtol(rel),solution} */
+function numTask(parent,o){
+  maxPts[o.desk]++;
+  var box=el("div",{class:"task"});
+  box.innerHTML='<div class="q"><span class="n">'+o.n+'</span><div class="qt">'+o.q+'</div></div>';
+  var row=el("div",{class:"row"});
+  var inp=el("input",{type:"text",inputmode:"decimal",id:o.desk+"-"+o.id,"aria-label":"Answer "+o.n,autocomplete:"off"});
+  var bt=el("button",{type:"button"},"Check"); var sb=el("button",{type:"button",class:"ghost"},"Show solution");
+  row.appendChild(inp); if(o.unit)row.appendChild(el("span",{class:"unit"},o.unit)); row.appendChild(bt); row.appendChild(sb);
+  var fb=el("div",{class:"fb","aria-live":"polite"});
+  box.appendChild(row); box.appendChild(fb); parent.appendChild(box);
+  var tries=0, closed=false;
+  function reveal(ok){closed=true;bt.disabled=true;sb.disabled=true;inp.readOnly=true;box.classList.add(ok?"done-ok":"done-bad");
+    fb.innerHTML=(ok?'<span class="ok">Correct.</span>':'<span class="bad">'+(tries>=2?"Two attempts used.":"Solution opened.")+'</span>')+'<div class="sol">'+o.solution+'</div>';
+    setScore(o.desk,o.id,ok?1:0);}
+  function check(){if(closed)return;var v=parseNum(inp.value);if(isNaN(v)){fb.innerHTML='<span class="bad">Enter a number.</span>';return;}
+    var tol=Math.max(o.tol||0,Math.abs(o.answer)*(o.rtol||0));tries++;
+    if(Math.abs(v-o.answer)<=tol+1e-9){reveal(true);}else if(tries>=2){reveal(false);}else{fb.innerHTML='<span class="bad">Not quite.</span> One more attempt. '+(o.hint||"");}}
+  bt.addEventListener("click",check); inp.addEventListener("keydown",function(e){if(e.key==="Enter")check();});
+  sb.addEventListener("click",function(){if(!closed)reveal(false);});
+}
+/* multiple choice task: opts {desk,id,n,q,options:[..],correct:index,solution} options shuffled */
+function mcTask(parent,o){
+  maxPts[o.desk]++;
+  var box=el("div",{class:"task"});
+  box.innerHTML='<div class="q"><span class="n">'+o.n+'</span><div class="qt">'+o.q+'</div></div>';
+  var opts=el("div",{class:"opts",role:"radiogroup"});
+  var order=shuffle(o.options.map(function(_,i){return i;}));
+  var letters="ABCD";
+  order.forEach(function(oi,k){var id=o.desk+"-"+o.id+"-"+k;var lab=el("label",{for:id});lab.innerHTML='<input type="radio" name="'+o.desk+"-"+o.id+'" id="'+id+'" value="'+oi+'"><span><b>'+letters[k]+'.</b> '+o.options[oi]+'</span>';opts.appendChild(lab);});
+  var row=el("div",{class:"row"}); var bt=el("button",{type:"button"},"Check"); row.appendChild(bt);
+  var fb=el("div",{class:"fb","aria-live":"polite"});
+  box.appendChild(opts); box.appendChild(row); box.appendChild(fb); parent.appendChild(box);
+  var tries=0,closed=false;
+  bt.addEventListener("click",function(){if(closed)return;var sel=opts.querySelector("input:checked");if(!sel){fb.innerHTML='<span class="bad">Choose an option.</span>';return;}
+    tries++;var ok=Number(sel.value)===o.correct;
+    if(ok||tries>=2){closed=true;bt.disabled=true;opts.querySelectorAll("input").forEach(function(i){i.disabled=true;});box.classList.add(ok?"done-ok":"done-bad");
+      fb.innerHTML=(ok?'<span class="ok">Correct.</span>':'<span class="bad">Two attempts used.</span>')+'<div class="sol">'+o.solution+'</div>';setScore(o.desk,o.id,ok?1:0);}
+    else fb.innerHTML='<span class="bad">Not quite.</span> One more attempt.';});
+}
+
+function classify(parent,desk,id,items,labels,explain){
+  var wrap=el("div",{class:"cards"}); var picks={};
+  items.forEach(function(it,k){var c=el("div",{class:"card"});c.appendChild(el("p",null,it.t));var seg=el("div",{class:"seg",role:"group","aria-label":"Classification"});
+    labels.forEach(function(lb,j){var b=el("button",{type:"button","aria-pressed":"false",id:desk+"-"+id+"-"+k+"-"+j},lb);b.addEventListener("click",function(){if(c.dataset.locked)return;picks[k]=j;seg.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed","false");});b.setAttribute("aria-pressed","true");});seg.appendChild(b);});
+    c.appendChild(seg);var why=el("p",{class:"why"});why.hidden=true;c.appendChild(why);wrap.appendChild(c);it._c=c;it._w=why;});
+  parent.appendChild(wrap);
+  maxPts[desk]+=items.length;
+  var row=el("div",{class:"actions"});var bt=el("button",{type:"button"},"Check all");var fb=el("span",{class:"small","aria-live":"polite"});row.appendChild(bt);row.appendChild(fb);parent.appendChild(row);
+  bt.addEventListener("click",function(){
+    if(Object.keys(picks).length<items.length){fb.textContent="Classify every item first ("+Object.keys(picks).length+" of "+items.length+" done).";return;}
+    var ok=0;items.forEach(function(it,k){var good=picks[k]===it.a;if(good)ok++;it._c.classList.add(good?"ok":"bad");it._c.dataset.locked="1";it._w.hidden=false;
+      it._w.innerHTML=(good?"<b>Correct.</b> ":"<b>Answer: "+labels[it.a]+".</b> ")+(it.w||explain(it));setScore(desk,id+"-"+k,good?1:0);});
+    bt.disabled=true;fb.textContent=ok+" of "+items.length+" correct.";});
+}
+/* ---------- DESK 1: growth accounting and equity returns ---------- */
+function buildDesk1(){
+  var s=document.getElementById("desk1"); s.innerHTML="";
+  var a=pick([0.3,0.35,0.4]), gK=ri(20,60)/10, gL=ri(-5,15)/10, gA=ri(5,25)/10;
+  var pot=gA+a*gK+(1-a)*gL, lp=pot-gL;
+  var act=Math.round((pot+ri(-9,9)/10)*10)/10, tfp=act-a*gK-(1-a)*gL;
+  var cK=a*gK, cL=(1-a)*gL, contr=[tfp,cK,cL], big=contr.indexOf(Math.max.apply(null,contr));
+  s.appendChild(el("h2",null,"Desk 1 · Growth accounting and equity returns"));
+  s.appendChild(el("h3",null,"Potential growth"));
+  s.appendChild(el("p",{class:"lede"},"An economy's share of capital income in GDP is <b class=mono>α = "+a+"</b>. Over the long run, the capital stock is expected to grow by <b class=mono>"+fmt(gK,1)+"%</b> a year, labour input by <b class=mono>"+fmt(gL,1)+"%</b> a year, and total factor productivity (TFP) by <b class=mono>"+fmt(gA,1)+"%</b> a year."));
+  numTask(s,{desk:"desk1",id:"pot",n:"1.1",q:"Potential GDP growth.",unit:"%",answer:pot,tol:0.011,
+    solution:"Growth accounting: TFP growth + α × capital growth + (1 − α) × labour growth = <span class=mono>"+fmt(gA,1)+" + "+a+" × "+fmt(gK,1)+" + "+fmt(1-a,2)+" × "+fmt(gL,1)+" = "+fmt(pot,2)+"%</span>."});
+  numTask(s,{desk:"desk1",id:"lp",n:"1.2",q:"Growth of labour productivity (output per unit of labour) implied by your answer to 1.1.",unit:"%",answer:lp,tol:0.011,
+    solution:"Labour productivity growth ≈ GDP growth − labour growth = <span class=mono>"+fmt(pot,2)+" − "+fmt(gL,1)+" = "+fmt(lp,2)+"%</span>. It comes from TFP and from capital deepening (capital growing faster than labour)."});
+  s.appendChild(el("p",{class:"lede"},"Last year real GDP actually grew by <b class=mono>"+fmt(act,1)+"%</b>, with capital and labour growing at the rates above."));
+  numTask(s,{desk:"desk1",id:"tfp",n:"1.3",q:"Estimate last year's TFP growth as the residual.",unit:"%",answer:tfp,tol:0.011,
+    solution:"TFP growth = GDP growth − α × capital growth − (1 − α) × labour growth = <span class=mono>"+fmt(act,1)+" − "+fmt(cK,2)+" − "+fmt(cL,2)+" = "+fmt(tfp,2)+"%</span>. TFP is not observed directly: it is whatever growth the inputs cannot explain."});
+  mcTask(s,{desk:"desk1",id:"big",n:"1.4",q:"Last year, which source contributed most to GDP growth?",
+    options:["TFP (technology and efficiency)","Capital","Labour"],correct:big,
+    solution:"Contributions: TFP "+fmt(tfp,2)+" pp, capital "+fmt(cK,2)+" pp ("+a+" × "+fmt(gK,1)+"), labour "+fmt(cL,2)+" pp ("+fmt(1-a,2)+" × "+fmt(gL,1)+"). Capital and labour count with their income shares, not with their own growth rates."});
+  /* equity */
+  var dy=ri(15,45)/10, inf=ri(20,80)/10, dil=ri(0,15)/10, rg=Math.round(pot*10)/10;
+  var er=dy+rg+inf-dil;
+  var pe0=pick([10,12,14,15]), pe1=pe0+pick([3,4,5,6]), yrs=pick([5,8,10]), rep=(Math.pow(pe1/pe0,1/yrs)-1)*100;
+  s.appendChild(el("h3",null,"Long-run equity returns"));
+  s.appendChild(el("p",{class:"lede"},"The country's stock market has a dividend yield of <b class=mono>"+fmt(dy,1)+"%</b>. Expected inflation is <b class=mono>"+fmt(inf,1)+"%</b>, net new share issuance dilutes existing shareholders by <b class=mono>"+fmt(dil,1)+"%</b> a year, and real earnings grow with potential GDP, <b class=mono>"+fmt(rg,1)+"%</b>."));
+  numTask(s,{desk:"desk1",id:"er",n:"1.5",q:"Expected long-run nominal equity return, assuming a stable P/E ratio.",unit:"%",answer:er,tol:0.011,
+    solution:"Return ≈ dividend yield + real earnings growth + inflation − dilution + change in P/E = <span class=mono>"+fmt(dy,1)+" + "+fmt(rg,1)+" + "+fmt(inf,1)+" − "+fmt(dil,1)+" + 0 = "+fmt(er,2)+"%</span>."});
+  numTask(s,{desk:"desk1",id:"rep",n:"1.6",q:"A strategist expects the P/E ratio to rise from "+pe0+" to "+pe1+" over the next "+yrs+" years. How much would this repricing add to the return per year?",unit:"%",answer:rep,tol:0.011,
+    solution:"<span class=mono>("+pe1+" / "+pe0+")^(1/"+yrs+") − 1 = "+fmt(rep,2)+"%</span> a year."});
+  mcTask(s,{desk:"desk1",id:"pe",n:"1.7",q:"Should an investor add this repricing to the expected return for the next 30 years?",
+    options:["No: the P/E ratio cannot rise for ever, so repricing adds to returns only temporarily.","Yes: a higher P/E ratio reflects permanently faster growth.","Yes, as long as inflation stays stable."],correct:0,
+    solution:"The P/E ratio moves with the cycle and sentiment but cannot trend up indefinitely. In the long run, equity returns come from dividends and earnings growth, and earnings growth is capped by potential GDP growth."});
+}
+
+/* ---------- DESK 2: deficits and debt ---------- */
+function buildDesk2(){
+  var s=document.getElementById("desk2"); s.innerHTML="";
+  var d0=ri(40,120), r=ri(20,90)/10, g=ri(10,100)/10, pb=ri(-25,25)/10;
+  var R=r/100, G=g/100;
+  var d1=d0*(1+R)/(1+G)-pb, pbs=d0*(R-G)/(1+G);
+  var d5=d0; for(var k=0;k<5;k++) d5=d5*(1+R)/(1+G)-pb;
+  var dir=Math.abs(pb-pbs)<0.005?2:(pb>pbs?1:0);
+  s.appendChild(el("h2",null,"Desk 2 · Deficits and debt"));
+  s.appendChild(el("p",{class:"lede"},"Government debt is <b class=mono>"+d0+"%</b> of GDP. The average nominal interest rate on the debt is <b class=mono>"+fmt(r,1)+"%</b>, nominal GDP grows by <b class=mono>"+fmt(g,1)+"%</b> a year, and the government plans a primary "+(pb>=0?"surplus":"deficit")+" of <b class=mono>"+fmt(Math.abs(pb),1)+"%</b> of GDP each year. Use the exact formula: debt ratio next year = debt ratio × (1 + r) / (1 + g) − primary balance (a surplus is positive, a deficit negative)."));
+  numTask(s,{desk:"desk2",id:"d1",n:"2.1",q:"Debt ratio at the end of next year.",unit:"% of GDP",answer:d1,tol:0.011,
+    solution:"<span class=mono>"+d0+" × (1 + "+fmt(R,3)+") / (1 + "+fmt(G,3)+") − ("+fmt(pb,1)+") = "+fmt(d1,2)+"%</span> of GDP."});
+  numTask(s,{desk:"desk2",id:"pbs",n:"2.2",q:"Primary balance that would keep the debt ratio unchanged (a deficit as a negative number).",unit:"% of GDP",answer:pbs,tol:0.011,
+    solution:"Set next year's ratio equal to this year's: pb* = d × (r − g) / (1 + g) = <span class=mono>"+d0+" × ("+fmt(R,3)+" − "+fmt(G,3)+") / (1 + "+fmt(G,3)+") = "+fmt(pbs,2)+"%</span> of GDP. "+(r>g?"Since r > g, a primary surplus is needed just to stand still.":"Since r < g, the government can run a primary deficit and still keep the ratio stable.")});
+  mcTask(s,{desk:"desk2",id:"dir",n:"2.3",q:"With the planned primary balance of "+fmt(pb,1)+"% of GDP, the debt ratio will:",
+    options:["rise over time","fall over time","stay roughly unchanged"],correct:dir,
+    solution:"The planned balance is "+(dir===1?"above":dir===0?"below":"equal to")+" the debt-stabilising balance of "+fmt(pbs,2)+"% of GDP, so the debt ratio "+(dir===1?"falls":dir===0?"rises":"stays the same")+"."});
+  numTask(s,{desk:"desk2",id:"d5",n:"2.4",q:"Debt ratio after five years, if r, g and the primary balance stay the same.",unit:"% of GDP",answer:d5,tol:0.05,
+    solution:"Apply the formula five times: "+fmt(d0,0)+" → "+(function(){var x=d0,o=[];for(var k=0;k<5;k++){x=x*(1+R)/(1+G)-pb;o.push(fmt(x,2));}return o.join(" → ");})()+"% of GDP."});
+  mcTask(s,{desk:"desk2",id:"rg",n:"2.5",q:"Investors start demanding 2 pp more on new government debt, and over time the average rate on all debt rises by 2 pp. Which statement is most accurate?",
+    options:["The debt-stabilising primary balance rises by about 2 pp × the debt ratio, so the government needs a larger surplus.","Nothing changes for the debt ratio, because GDP growth is unchanged.","The debt ratio falls, because higher rates attract more investors."],correct:0,
+    solution:"pb* = d × (r − g) / (1 + g): a 2 pp higher r raises pb* by about 0.02 × "+d0+" ≈ "+fmt(0.02*d0/(1+G),2)+"% of GDP. High debt makes public finances sensitive to interest rates — one reason why bond markets matter for fiscal policy."});
+}
+
+/* ---------- DESK 3: multipliers and fiscal stance ---------- */
+var MEAS=[
+ {t:"Parliament approves a new road-building programme.",a:0,w:"Discretionary expansionary: a new decision that raises government spending."},
+ {t:"The government cuts the corporate profit tax rate.",a:0,w:"Discretionary expansionary: a deliberate tax cut."},
+ {t:"A one-off payment to all families with children is approved.",a:0,w:"Discretionary expansionary: a new transfer programme."},
+ {t:"The VAT rate is raised from 20% to 22%.",a:1,w:"Discretionary contractionary: a deliberate tax increase."},
+ {t:"Public sector wages are frozen and hiring is stopped.",a:1,w:"Discretionary contractionary: a deliberate cut in spending growth."},
+ {t:"Subsidies to industry are cut to reduce the deficit.",a:1,w:"Discretionary contractionary: lower spending by decision."},
+ {t:"Income tax revenue falls in a recession because incomes fall.",a:2,w:"Automatic stabiliser: revenue follows income under unchanged tax rules."},
+ {t:"Unemployment benefit payments rise as more people lose their jobs.",a:2,w:"Automatic stabiliser: spending rises under existing rules."},
+ {t:"Tax revenue rises in a boom with tax rates unchanged.",a:2,w:"Automatic stabiliser: it works in both directions, cooling a boom."},
+ {t:"A progressive income tax takes a larger share of income as wages rise.",a:2,w:"Automatic stabiliser: progressivity makes revenue rise faster than income."}
+];
+function buildDesk3(){
+  var s=document.getElementById("desk3"); s.innerHTML="";
+  var c=ri(60,90)/100, t=ri(10,35)/100, k=1/(1-c*(1-t));
+  var G=ri(4,16)*5, T=ri(4,16)*5, B=ri(4,12)*5;
+  var dG=G*k, dT=c*T*k, dB=B*k*(1-c);
+  s.appendChild(el("h2",null,"Desk 3 · Multipliers and fiscal stance"));
+  s.appendChild(el("h3",null,"Multipliers"));
+  s.appendChild(el("p",{class:"lede"},"Households spend <b class=mono>"+fmt(c*100,0)+"%</b> of each extra unit of disposable income (c = "+fmt(c,2)+"); the tax rate on income is <b class=mono>"+fmt(t*100,0)+"%</b> (t = "+fmt(t,2)+"). Prices and interest rates do not change; the economy is closed."));
+  numTask(s,{desk:"desk3",id:"k",n:"3.1",q:"Government spending multiplier.",answer:k,tol:0.011,
+    solution:"<span class=mono>1 / (1 − c × (1 − t)) = 1 / (1 − "+fmt(c,2)+" × "+fmt(1-t,2)+") = "+fmt(k,2)+"</span>."});
+  numTask(s,{desk:"desk3",id:"dg",n:"3.2",q:"The government raises spending by "+G+" bn. By how much does aggregate demand rise?",unit:"bn",answer:dG,rtol:0.003,
+    solution:"<span class=mono>"+G+" × "+fmt(k,4)+" = "+fmt(dG,2)+" bn</span>."});
+  numTask(s,{desk:"desk3",id:"dt",n:"3.3",q:"Instead, the government cuts taxes by a lump sum of "+T+" bn. By how much does aggregate demand rise?",unit:"bn",answer:dT,rtol:0.003,
+    solution:"Households first spend only c of the tax cut: <span class=mono>"+fmt(c,2)+" × "+T+" × "+fmt(k,4)+" = "+fmt(dT,2)+" bn</span> — less than the same amount of spending would give."});
+  numTask(s,{desk:"desk3",id:"db",n:"3.4",q:"The government raises spending by "+B+" bn and lump-sum taxes by "+B+" bn, so the deficit does not change. By how much does aggregate demand change?",unit:"bn",answer:dB,rtol:0.003,
+    solution:"Spending: + "+B+" × "+fmt(k,2)+"; taxes: − "+fmt(c,2)+" × "+B+" × "+fmt(k,2)+". Net: <span class=mono>"+B+" × "+fmt(k,4)+" × (1 − "+fmt(c,2)+") = "+fmt(dB,2)+" bn</span>. The balanced budget multiplier is positive."});
+  s.appendChild(el("h3",null,"Classify the measures"));
+  s.appendChild(el("p",{class:"lede"},"Is each item a discretionary decision — expansionary or contractionary — or an automatic stabiliser?"));
+  var items=[];[0,1,2].forEach(function(p){items=items.concat(shuffle(MEAS.filter(function(x){return x.a===p;})).slice(0,2));});
+  classify(s,"desk3","m",shuffle(items),["Discretionary, expansionary","Discretionary, contractionary","Automatic stabiliser"]);
+}
+
+/* ---------- summary ---------- */
+function renderSummary(){
+  var s=document.getElementById("summary"); var a=deskPts("desk1"),b=deskPts("desk2"),c=deskPts("desk3");
+  var seed=window.__seed; var chk=(seed*31+a*7+b*13+c*17)%97;
+  var code="W6-"+seed+"-"+a+"."+b+"."+c+"-"+String(chk).padStart(2,"0");
+  s.innerHTML='<h2>Summary</h2><div class="summary">'+
+   '<div class="sumrow"><span>Desk 1 · Growth and returns</span><span>'+a+' / '+maxPts.desk1+'</span></div>'+
+   '<div class="sumrow"><span>Desk 2 · Deficits and debt</span><span>'+b+' / '+maxPts.desk2+'</span></div>'+
+   '<div class="sumrow"><span>Desk 3 · Multipliers and stance</span><span>'+c+' / '+maxPts.desk3+'</span></div>'+
+   '<div><div class="small">Completion code — enter it only if your instructor asks for it</div><div class="code">'+code+'</div></div>'+
+   '<p class="small">Points count answers found within two attempts without opening the solution. For revision, open a new variant: the same tasks with new numbers.</p></div>';
+}
+
+/* ---------- boot ---------- */
+function start(seed){
+  window.__seed=seed; R=mulberry32(seed*2654435761%4294967296);
+  score={desk1:{},desk2:{},desk3:{}}; maxPts={desk1:0,desk2:0,desk3:0};
+  document.getElementById("seedShow").textContent=seed; store("w6seed",String(seed));
+  buildDesk1(); buildDesk2(); buildDesk3(); updateTabs();
+}
+function showTab(id){["desk1","desk2","desk3","summary"].forEach(function(t){document.getElementById(t).hidden=(t!==id);});
+  document.querySelectorAll("nav.tabs a").forEach(function(a){a.setAttribute("aria-current",a.dataset.tab===id?"true":"false");});
+  if(id==="summary")renderSummary();}
+document.querySelectorAll("nav.tabs a").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();showTab(a.dataset.tab);try{history.replaceState(null,"","#"+a.dataset.tab);}catch(_){}});});
+document.getElementById("seedNew").addEventListener("click",function(){start(1000+Math.floor(Math.random()*9000));});
+document.getElementById("seedGo").addEventListener("click",function(){var v=parseInt(document.getElementById("seedIn").value,10);if(v>=1000&&v<=9999)start(v);});
+var saved=parseInt(store("w6seed"),10);
+start(saved>=1000&&saved<=9999?saved:1000+Math.floor(Math.random()*9000));
+var h=(location.hash||"").replace("#","");showTab(["desk1","desk2","desk3","summary"].indexOf(h)>=0?h:"desk1");
+})();
+</script>
+
+</body></html>
